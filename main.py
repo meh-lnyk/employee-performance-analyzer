@@ -14,7 +14,11 @@ def main():
     args = parse_args()
     rows = load_files(args.files)
     try:
-        run_report(args.report, rows)
+        result = run_report(args.report, rows)
+        if not result:
+            print("Report returned empty result")
+        else:
+            print(f"Number of rows: {len(rows)}")
     except ValueError as e:
         print(f"Error: {e}")
 

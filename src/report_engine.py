@@ -1,5 +1,8 @@
-from src.reports import REPORTS
+from src.reports.performance_report import PerformanceReport
 
+REPORTS = {
+    "performance": PerformanceReport,
+}
 
 def run_report(report_name, rows):
     if report_name not in REPORTS:

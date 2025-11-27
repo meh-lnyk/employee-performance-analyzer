@@ -1,3 +1,1 @@
-from .base import BaseReport
-
-REPORTS = {}
+from src.reports.base_report import BaseReport
