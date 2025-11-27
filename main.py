@@ -1,30 +1,22 @@
-import argparse
+from argparse import ArgumentParser
+from src.data_loader import load_files
+from src.report_engine import run_report
 
 
 def parse_args(argv=None):
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--files",
-        nargs="+",
-        required=True,
-        help="Paths to CSV data files"
-    )
-
-    parser.add_argument(
-        "--report",
-        required=True,
-        help="Report name to generate"
-    )
-
+    parser = ArgumentParser()
+    parser.add_argument("--files", nargs="+", required=True)
+    parser.add_argument("--report", required=True)
     return parser.parse_args(argv)
 
 
 def main():
     args = parse_args()
-
-    print(f"Files: {args.files}")
-    print(f"Report: {args.report}")
+    rows = load_files(args.files)
+    try:
+        run_report(args.report, rows)
+    except ValueError as e:
+        print(f"Error: {e}")
 
 
 if __name__ == "__main__":
