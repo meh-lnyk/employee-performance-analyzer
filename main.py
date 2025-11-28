@@ -18,7 +18,7 @@ def main():
         if not result:
             print("Report returned empty result")
         else:
-            print(f"Number of rows: {len(rows)}")
+            print(result)
     except ValueError as e:
         print(f"Error: {e}")
 
