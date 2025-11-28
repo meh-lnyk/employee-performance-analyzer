@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 from src.data_loader import load_files
 from src.report_engine import run_report
+from src.formatter import format_table
 
 
 def parse_args(argv=None):
@@ -18,7 +19,9 @@ def main():
         if not result:
             print("Report returned empty result")
         else:
-            print(result)
+            result = run_report(args.report, rows)
+            output = format_table(result)
+            print(output)
     except ValueError as e:
         print(f"Error: {e}")
 

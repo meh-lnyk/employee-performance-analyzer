@@ -33,4 +33,6 @@ class PerformanceReport(BaseReport):
                 "average_performance": round(avg, 2),
             })
 
+        result.sort(key=lambda x: x["average_performance"], reverse=True)
+
         return result
