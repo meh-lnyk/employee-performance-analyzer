@@ -11,16 +11,12 @@ class PerformanceReport(BaseReport):
 
         for row in rows:
             pos_name = row.get("position")
-            perf_num = row.get("performance")
+            perf_str = row.get("performance")
 
-            if not pos_name or not perf_num:
+            if not pos_name or not perf_str:
                 continue
 
-            try:
-                perf_num = float(perf_num)
-            except ValueError as e:
-                print(f"Error: {e}")
-                continue
+            perf_num = float(perf_str)
 
             perf_map[pos_name].append(perf_num)
 
