@@ -1,3 +1,4 @@
+import pytest
 from src.reports.performance_report import PerformanceReport
 
 
@@ -20,3 +21,14 @@ def test_average_calculation():
     # Frontend avg = 4
     frontend = next(r for r in result if r["position"] == "Frontend")
     assert frontend["average_performance"] == 4.0
+
+
+def test_invalid_performance_value():
+    rows = [
+        {"position": "Backend", "performance": "abc"},
+    ]
+
+    report = PerformanceReport()
+
+    with pytest.raises(ValueError):
+        report.generate(rows)
